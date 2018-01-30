@@ -20,13 +20,27 @@ public class Gladiator {
 
     public void attack(Gladiator defender){
         int randomNum = ThreadLocalRandom.current().nextInt(lowDamage, highDamage);
-        if (rage > randomNum) {
+        int criticalChance = ThreadLocalRandom.current().nextInt(0, 100);
+        System.out.println("Critical Chance: " + criticalChance);
+        if (rage < criticalChance) {
+            System.out.println("Damage dealt: " + randomNum);
             defender.health -= randomNum;
             rage += 15;
+            if (defender.health <= 0){
+                defender.health = 0;
+            } else {}
         } else {
+            System.out.println("Damage dealt: " + randomNum + "\nIT'S A CRITICAL HIT!");
             defender.health -= randomNum * 2;
             rage = 0;
+            if (defender.health <= 0){
+                defender.health = 0;
+            } else {}
         }
+    }
+
+    public boolean isDead(){
+        return health == 0;
     }
 }
 
@@ -76,35 +90,3 @@ public class Gladiator {
 //    } else{
 //             return false
 //    }
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-//    public int core() {
-//        public class Gladiator {
-//            // the Gladiator class has
-//            // four fields
-//            public int health;
-//            public int rage;
-//            public int lowDamage;
-//            public int highDamage;
-//
-//            // the Gladiator class has
-//            // one constructor
-//            public Gladiator(int startHealth, int startRage, int startLowDamage, int startHighDamage) {
-//                health = startHealth;
-//                rage = startRage;
-//                lowDamage = startLowDamage;
-//                highDamage = startHighDamage;
-//            }
-//            // the Gladiator class has
-//            // four methods(Actions)
-//            public void isDead(int newValue) {
-//                health = newValue;
-//            }
-//            public void attack(int newValue) {
-//                speed -= decrement;
-//            }
-//            public void heal(int increment) {
-//                speed = increment;
-//            }
-//        }
-//    }
-//
