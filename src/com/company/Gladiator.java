@@ -1,4 +1,5 @@
 package com.company;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Gladiator {
     public int health;
@@ -6,18 +7,29 @@ public class Gladiator {
     public int lowDamage;
     public int highDamage;
 
-    public Gladiator(int gladhealth,int gladrage,int gladlowDamage,int gladhighDamage) {
-        //    Returns the
+    public Gladiator(int health,int rage,int lowDamage,int highDamage) {
+        /*    Returns the
         //    dictionary representing
         //    the gladiator
-        //    with the
-        //    provided values.
-        this.health = gladhealth;
-        this.rage = gladrage;
-        this.lowDamage = gladlowDamage;
-        this.highDamage = gladhighDamage;
+        //    with the provided values.*/
+        this.health = health;
+        this.rage = rage;
+        this.lowDamage = lowDamage;
+        this.highDamage = highDamage;
+    }
+
+    public void attack(Gladiator defender){
+        int randomNum = ThreadLocalRandom.current().nextInt(lowDamage, highDamage);
+        if (rage > randomNum) {
+            defender.health -= randomNum;
+            rage += 15;
+        } else {
+            defender.health -= randomNum * 2;
+            rage = 0;
+        }
     }
 }
+
 //    def critical_chance(percentage):
 //
 ////    Returns True if
@@ -30,17 +42,6 @@ public class Gladiator {
 //     else:
 //             return False
 //}
-//    public attack(attacker, defender){
-//
-//        number = attacker['rage'];
-//        damage = attacker['damageLow'],attacker['damageHigh'];
-//        if (number > random.randint(0,100)) {
-//            defender -= random.randint(damage);
-//            number = 15;
-//        } else{
-//            defender -= random.randint(damage) * 2;
-//            number = 0;}
-//    }
 //
 //
 //    def heal(gladiator):
@@ -48,7 +49,7 @@ public class Gladiator {
 //
 ////            -Spends 10
 ////    rage to
-////    heal 5 health
+////    heal 20 health
 ////     -
 ////    Cannot heal
 ////    above max
@@ -61,7 +62,7 @@ public class Gladiator {
 //     else:
 //    gladiator['rage']-=10
 //    gladiator['Health']=5
-//
+////
 //
 //    def isDead(gladiator):
 //
