@@ -55,8 +55,8 @@ public class Gladiator {
            -Cannot heal above max
              health of 100 */
         if (health < 100 && rage >= 10){
-            rage -= 10;
-            health += 20;
+            rage = Integer.max(0, rage - 10);
+            health = Integer.min(100, health + 20);;
             System.out.println("Healed!");
         } else {
             System.out.println("\nCannot heal!\n");
